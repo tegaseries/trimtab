@@ -13,7 +13,8 @@
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2323FF.svg" alt="License: MIT"></a>
   <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-3.0.0-2323FF.svg" alt="Version 3.0.0"></a>
-  <a href="#quick-start"><img src="https://img.shields.io/badge/Claude%20Code-plugin-2323FF.svg" alt="Claude Code plugin"></a>
+  <a href="#claude-code"><img src="https://img.shields.io/badge/Claude%20Code-plugin-2323FF.svg" alt="Claude Code plugin"></a>
+  <a href="#claudeai-desktop-app-and-cowork"><img src="https://img.shields.io/badge/claude.ai%20%C2%B7%20desktop%20%C2%B7%20Cowork-skill-2323FF.svg" alt="claude.ai, desktop and Cowork skill"></a>
   <a href="#how-it-works"><img src="https://img.shields.io/badge/markdown-only-2323FF.svg" alt="Markdown only"></a>
 </p>
 
@@ -27,7 +28,7 @@
 </p>
 
 <p align="center">
-  A trim tab is the small flap on a rudder that turns a big ship. trimtab is one plugin with two skills: <b>token-lean</b> makes Claude lead with the point that matters, say how sure it is, check its work before calling it done, hand mechanical steps to cheaper models, and write a handoff before a session gets long. <b>memory-map</b> (optional) gives Claude a small linked memory it reads before asking you the same thing twice.
+  A trim tab is the small flap on a rudder that turns a big ship. trimtab is two skills that work in Claude Code, claude.ai, the Claude desktop app and Cowork: <b>token-lean</b> makes Claude lead with the point that matters, say how sure it is, check its work before calling it done, hand mechanical steps to cheaper models, and write a handoff before a session gets long. <b>memory-map</b> (optional) gives Claude a small linked memory it reads before asking you the same thing twice.
 </p>
 
 ---
@@ -36,31 +37,37 @@
 
 ## Quick Start
 
+Pick the place you use Claude. The rules are the same everywhere.
+
+### Claude Code
+
 In Claude Code 2.1.275 or later:
 
 ```
 /plugin install trimtab --marketplace tegaseries/trimtab
 ```
 
-Then start a session with:
-
-```
-/trimtab:token-lean
-```
-
-That's it. The core rules apply for the rest of the session. Installing the plugin does not edit your `CLAUDE.md` or `settings.json`.
-
-<details>
-<summary><b>Other ways to install</b></summary>
-
-**Older Claude Code versions, two steps.** The first line adds the `tegaseries` marketplace from this repo; the second installs the `trimtab` plugin from it.
+On older versions, use two steps instead (add the `tegaseries` marketplace from this repo, then install the `trimtab` plugin from it):
 
 ```
 /plugin marketplace add tegaseries/trimtab
 /plugin install trimtab@tegaseries
 ```
 
-**Copy the folder (Claude Code, any OS).** Download this repository as a ZIP (green **Code** button, then **Download ZIP**), unzip it, and copy the skill folder into your skills directory.
+Then start a session with `/trimtab:token-lean`. The core rules apply for the rest of the session. Installing the plugin does not edit your `CLAUDE.md` or `settings.json`.
+
+### claude.ai, desktop app and Cowork
+
+1. Download [token-lean.skill](https://github.com/tegaseries/trimtab/raw/main/dist/token-lean.skill) (and [memory-map.skill](https://github.com/tegaseries/trimtab/raw/main/dist/memory-map.skill) if you want the memory skill). Each file is a ZIP of the skill folder.
+2. In claude.ai or the desktop app, open **Customize**, then **Skills**. Click **+**, then **Upload a skill**, and choose the file.
+3. Start a chat or a Cowork task with `/token-lean`.
+
+Skills need code execution turned on, and they are available on Free, Pro, Max, Team and Enterprise plans ([Anthropic help center](https://support.claude.com/en/articles/12512180-use-skills-in-claude)). A skill you upload to your account also loads in Claude Code when you sign in with the same account, so on one machine pick either the plugin or the upload, not both.
+
+<details>
+<summary><b>Copy the folder instead (Claude Code, any OS)</b></summary>
+
+**Copy the folder.** Download this repository as a ZIP (green **Code** button, then **Download ZIP**), unzip it, and copy the skill folder into your skills directory.
 
 macOS or Linux:
 
@@ -76,22 +83,16 @@ Copy-Item -Recurse trimtab-main\plugins\trimtab\skills\token-lean $env:USERPROFI
 
 To install for one project only, copy it into that project's `.claude/skills/` folder instead. For `memory-map`, use the folder `plugins/trimtab/skills/memory-map` the same way. A copied skill is typed without the plugin prefix: `/token-lean`.
 
-**claude.ai or Cowork upload.**
-
-1. Download `dist/token-lean.skill` (and `dist/memory-map.skill` if you want the memory skill).
-2. On claude.ai open **Customize**, then **Plugins**, choose **Add**, and upload the file.
-3. Type `/token-lean` at the start of a chat.
-
-claude.ai accepts only these frontmatter keys: `name`, `description`, `license`, `compatibility`, `metadata`, `allowed-tools`. The skills here use only those.
-
 </details>
+
+**Other places.** Developers can load the same skill folder through the Claude API's code execution tool (beta). Uploading custom skills from the mobile app is not confirmed; upload on the web or desktop app first. claude.ai accepts only these frontmatter keys: `name`, `description`, `license`, `compatibility`, `metadata`, `allowed-tools`. The skills here use only those.
 
 ## What You Get
 
 | Skill | Command | What it does |
 |---|---|---|
-| `token-lean` | `/trimtab:token-lean` | Core rules at the top of `SKILL.md`: lead with the point, confidence tags (`[Certain]`, `[Likely]`, `[Guessing]`), checks before "done", write less, read less, lean replies. Then the detail: task sizing, a "mechanical test" for handing steps to cheaper models, context hygiene, session handoff. |
-| `memory-map` | `/trimtab:memory-map` | Optional. A memory made of plain markdown files: root index, then one topic hub, then one note. Rules for looking up, saving and logging work. Starter templates included. |
+| `token-lean` | `/trimtab:token-lean` (plugin) or `/token-lean` (upload or folder copy) | Core rules at the top of `SKILL.md`: lead with the point, confidence tags (`[Certain]`, `[Likely]`, `[Guessing]`), checks before "done", write less, read less, lean replies. Then the detail: task sizing, a "mechanical test" for handing steps to cheaper models, context hygiene, session handoff. |
+| `memory-map` | `/trimtab:memory-map` (plugin) or `/memory-map` (upload or folder copy) | Optional. A memory made of plain markdown files: root index, then one topic hub, then one note. Rules for looking up, saving and logging work. Starter templates included. |
 
 Both are plain markdown. No scripts, no hooks, no network access, and nothing edits your settings. They behave the same on Windows, macOS and Linux.
 
@@ -115,7 +116,7 @@ These are starting points. Compare your own usage with and without them before y
 
 - Plugin: `/plugin uninstall trimtab@tegaseries`.
 - Copied folder: delete `~/.claude/skills/token-lean`.
-- claude.ai: open the skill under Customize, then Plugins, and use Disable or Delete.
+- claude.ai, desktop app or Cowork: open **Customize**, then **Skills**, and turn the skill off or delete it.
 - Snippet: delete the block between the `token-lean:begin` and `token-lean:end` markers in your `CLAUDE.md`.
 
 ## Known Limits

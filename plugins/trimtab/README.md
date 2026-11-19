@@ -17,4 +17,4 @@ Install in Claude Code (2.1.275 or later):
 /plugin install trimtab --marketplace tegaseries/trimtab
 ```
 
-Other install routes, usage and limits: see the [main README](../../README.md).
+On claude.ai, the desktop app or Cowork, upload `dist/token-lean.skill` under **Customize**, then **Skills**, and type `/token-lean`. Steps, other routes and limits: see the [main README](../../README.md).
