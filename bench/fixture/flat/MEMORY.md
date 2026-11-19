@@ -1,0 +1,42 @@
+# Memory index
+
+- [client-brightfield](client-brightfield.md) - Brightfield client notes
+- [client-cedarwind](client-cedarwind.md) - Cedarwind client notes
+- [client-dunmore](client-dunmore.md) - Dunmore client notes
+- [client-eastgate](client-eastgate.md) - Eastgate client notes
+- [client-fernhill](client-fernhill.md) - Fernhill client notes
+- [project-aurora](project-aurora.md) - Aurora project notes
+- [project-basalt](project-basalt.md) - Basalt project notes
+- [project-cobalt](project-cobalt.md) - Cobalt project notes
+- [project-delta](project-delta.md) - Delta project notes
+- [project-ember](project-ember.md) - Ember project notes
+- [tool-ledger](tool-ledger.md) - Ledger tool notes
+- [tool-planner](tool-planner.md) - Planner tool notes
+- [tool-mailer](tool-mailer.md) - Mailer tool notes
+- [tool-backup](tool-backup.md) - Backup tool notes
+- [tool-wiki](tool-wiki.md) - Wiki tool notes
+- [person-alma](person-alma.md) - Alma notes
+- [person-bruno](person-bruno.md) - Bruno notes
+- [person-chen](person-chen.md) - Chen notes
+- [person-dara](person-dara.md) - Dara notes
+- [person-eli](person-eli.md) - Eli notes
+- [invoice-policy](invoice-policy.md) - Invoice policy notes
+- [tax-calendar](tax-calendar.md) - Tax calendar notes
+- [budget-2027](budget-2027.md) - Budget 2027 notes
+- [vendor-list](vendor-list.md) - Vendor list notes
+- [expense-rules](expense-rules.md) - Expense rules notes
+- [trip-lisbon](trip-lisbon.md) - Lisbon trip notes
+- [trip-osaka](trip-osaka.md) - Osaka trip notes
+- [event-summit](event-summit.md) - Summit event notes
+- [event-meetup](event-meetup.md) - Meetup event notes
+- [trip-nairobi](trip-nairobi.md) - Nairobi trip notes
+- [gear-laptop](gear-laptop.md) - Laptop notes
+- [gear-camera](gear-camera.md) - Camera notes
+- [gear-printer](gear-printer.md) - Printer notes
+- [gear-router](gear-router.md) - Router notes
+- [gear-nas](gear-nas.md) - NAS notes
+- [course-sql](course-sql.md) - SQL course notes
+- [course-sketch](course-sketch.md) - Sketching course notes
+- [book-notes](book-notes.md) - Book notes notes
+- [reading-list](reading-list.md) - Reading list notes
+- [podcast-list](podcast-list.md) - Podcast list notes

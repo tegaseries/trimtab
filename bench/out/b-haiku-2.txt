@@ -1,0 +1,40 @@
+book-notes | Progress: 3 books finished this year | 2026-09-25
+budget-2027 | Owner: [[person-bruno]] | 2026-09-27
+client-brightfield | Contact: mara@example.com | 2026-09-22
+client-cedarwind | Contact: joss@example.com | 2026-09-24
+client-dunmore | Contact: ines@example.com | 2026-09-23
+client-eastgate | Contact: tomas@example.com | 2026-09-09
+client-fernhill | Contact: pia@example.com | 2026-09-25
+course-sketch | Progress: module 2 of 6 | 2026-09-21
+course-sql | Progress: module 5 of 9 | 2026-09-25
+event-meetup | Venue: The Loft, Room 2 | 2026-09-23
+event-summit | Venue: Riverside Conference Hall, Stage 2 | 2026-09-28
+expense-rules | Owner: [[person-bruno]] | 2026-09-26
+gear-camera | Serial: SN-77031 | 2026-09-24
+gear-laptop | Serial: SN-48120 | 2026-09-25
+gear-nas | Serial: SN-90418 | 2026-09-28
+gear-printer | Serial: SN-30955 | 2026-09-21
+gear-router | Serial: SN-61204 | 2026-09-18
+invoice-policy | Owner: [[person-bruno]] | 2026-09-15
+person-alma | Role: designer | 2026-09-25
+person-bruno | Role: accountant | 2026-09-27
+person-chen | Role: developer | 2026-09-27
+person-dara | Role: editor | 2026-09-22
+person-eli | Role: support | 2026-09-28
+podcast-list | Progress: 8 shows followed | 2026-09-27
+project-aurora | Status: active | 2026-09-28
+project-basalt | Status: on track | 2026-09-18
+project-cobalt | Status: in review | 2026-09-17
+project-delta | Status: blocked - waiting on legal review of the data clause | 2026-09-27
+project-ember | Status: done | 2026-09-27
+reading-list | Progress: 12 titles queued | 2026-09-08
+tax-calendar | Owner: [[person-bruno]] | 2026-09-26
+tool-backup | Plan: Basic | 2026-09-25
+tool-ledger | Plan: Starter | 2026-09-28
+tool-mailer | Plan: Growth | 2026-09-23
+tool-planner | Plan: Team | 2026-09-24
+tool-wiki | Plan: Free tier | 2026-09-16
+trip-lisbon | Venue: Casa Azul, Room 4B (workshop day) | 2026-09-20
+trip-nairobi | Venue: Kijani Hub, Room 7 | 2026-09-18
+trip-osaka | Venue: Hall C, Namba Center | 2026-09-16
+vendor-list | Owner: [[person-bruno]] | 2026-09-28

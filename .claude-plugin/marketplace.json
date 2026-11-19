@@ -1,0 +1,17 @@
+{
+  "name": "tegaseries",
+  "owner": {
+    "name": "tegaseries",
+    "url": "https://www.tegaseries.com"
+  },
+  "metadata": {
+    "description": "trimtab: small rules that steer Claude to better work for fewer tokens, plus an optional file-based memory."
+  },
+  "plugins": [
+    {
+      "name": "trimtab",
+      "source": "./plugins/trimtab",
+      "description": "Two skills: token-lean (advisor-style replies, checks before done, strongest model plans while cheap workers do mechanical steps, lean context, session handoff) and memory-map (an optional linked memory in plain markdown)."
+    }
+  ]
+}
