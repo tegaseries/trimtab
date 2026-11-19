@@ -1,10 +1,11 @@
 <h1 align="center">
   <br>
   <a href="https://github.com/tegaseries/trimtab">
-    <img src="plugins/trimtab/.claude-plugin/icon.png" alt="trimtab" width="160">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/trimtab-wordmark-dark.svg">
+      <img src="assets/trimtab-wordmark-light.svg" alt="trimtab" width="420">
+    </picture>
   </a>
-  <br>
-  trimtab
   <br>
 </h1>
 
@@ -14,7 +15,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2323FF.svg" alt="License: MIT"></a>
   <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-3.0.0-2323FF.svg" alt="Version 3.0.0"></a>
   <a href="#claude-code"><img src="https://img.shields.io/badge/Claude%20Code-plugin-2323FF.svg" alt="Claude Code plugin"></a>
-  <a href="#claudeai-desktop-app-and-cowork"><img src="https://img.shields.io/badge/claude.ai%20%C2%B7%20desktop%20%C2%B7%20Cowork-skill-2323FF.svg" alt="claude.ai, desktop and Cowork skill"></a>
+  <a href="#claudeai-desktop-app-and-cowork"><img src="https://img.shields.io/badge/claude.ai%20%C2%B7%20desktop%20%C2%B7%20Cowork-plugin-2323FF.svg" alt="claude.ai, desktop and Cowork plugin"></a>
   <a href="#how-it-works"><img src="https://img.shields.io/badge/markdown-only-2323FF.svg" alt="Markdown only"></a>
 </p>
 
@@ -37,7 +38,26 @@
 
 ## Quick Start
 
-Pick the place you use Claude. The rules are the same everywhere.
+Pick the place you use Claude. The rules are the same everywhere. Install one way only: an install on your account also shows up in Claude Code, and two copies load the rules twice.
+
+### claude.ai, desktop app and Cowork
+
+**Paid plans (Pro, Max, Team, Enterprise): add this repo as a plugin marketplace.** One install covers chat on the web, the desktop app, Cowork, and Claude Code when you sign in with the same account (Claude Code 2.1.273 or later).
+
+1. Open **Customize**, then **Plugins**.
+2. Click **Add**, then **Add marketplace**, then **Add from a repository**, and enter `tegaseries/trimtab`.
+3. Find **trimtab** under **Discover** and click **Install**.
+4. In chat, type `/` and pick **token-lean**. In Cowork, type `/trimtab:token-lean`.
+
+On Team and Enterprise plans an admin may limit which marketplaces you can add ([Anthropic help center](https://support.claude.com/en/articles/13837440-use-plugins-in-claude)).
+
+**Free plan, or if you only want the skill: upload it.**
+
+1. Download [token-lean.zip](https://github.com/tegaseries/trimtab/raw/main/dist/token-lean.zip) (and [memory-map.zip](https://github.com/tegaseries/trimtab/raw/main/dist/memory-map.zip) if you want the memory skill). Don't unzip it.
+2. Open **Customize**, then **Skills**. Click **+**, then **Create skill**, then **Upload a skill**, and choose the file.
+3. Start a chat with `/token-lean`.
+
+Skills need code execution and file creation turned on (**Settings**, then **Capabilities**) ([Anthropic help center](https://support.claude.com/en/articles/12512180-use-skills-in-claude)).
 
 ### Claude Code
 
@@ -56,13 +76,15 @@ On older versions, use two steps instead (add the `tegaseries` marketplace from 
 
 Then start a session with `/trimtab:token-lean`. The core rules apply for the rest of the session. Installing the plugin does not edit your `CLAUDE.md` or `settings.json`.
 
-### claude.ai, desktop app and Cowork
+### Check it works
 
-1. Download [token-lean.skill](https://github.com/tegaseries/trimtab/raw/main/dist/token-lean.skill) (and [memory-map.skill](https://github.com/tegaseries/trimtab/raw/main/dist/memory-map.skill) if you want the memory skill). Each file is a ZIP of the skill folder.
-2. In claude.ai or the desktop app, open **Customize**, then **Skills**. Click **+**, then **Upload a skill**, and choose the file.
-3. Start a chat or a Cowork task with `/token-lean`.
+Start a new chat or session, load the skill as above, and ask something you would act on, such as "Should I use SQLite or Postgres for a small web app?". A working install leads with the answer and tags its claims `[Certain]`, `[Likely]` or `[Guessing]`. A plain session does neither.
 
-Skills need code execution turned on, and they are available on Free, Pro, Max, Team and Enterprise plans ([Anthropic help center](https://support.claude.com/en/articles/12512180-use-skills-in-claude)). A skill you upload to your account also loads in Claude Code when you sign in with the same account, so on one machine pick either the plugin or the upload, not both.
+### Update
+
+- Plugin on claude.ai, desktop or Cowork: **Customize**, then **Plugins**, open the `tegaseries` marketplace and click **Check for updates**, or turn on **Sync automatically**.
+- Plugin in Claude Code: `/plugin marketplace update tegaseries`.
+- Uploaded skill: delete it under **Customize**, then **Skills**, and upload the new ZIP.
 
 <details>
 <summary><b>Copy the folder instead (Claude Code, any OS)</b></summary>
@@ -114,9 +136,10 @@ These are starting points. Compare your own usage with and without them before y
 
 ## Uninstall
 
-- Plugin: `/plugin uninstall trimtab@tegaseries`.
+- Plugin on claude.ai, desktop or Cowork: **Customize**, then **Plugins**, open trimtab and click **Remove**.
+- Plugin in Claude Code: `/plugin uninstall trimtab@tegaseries`.
+- Uploaded skill: **Customize**, then **Skills**, and turn it off or delete it.
 - Copied folder: delete `~/.claude/skills/token-lean`.
-- claude.ai, desktop app or Cowork: open **Customize**, then **Skills**, and turn the skill off or delete it.
 - Snippet: delete the block between the `token-lean:begin` and `token-lean:end` markers in your `CLAUDE.md`.
 
 ## Known Limits

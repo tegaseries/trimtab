@@ -24,8 +24,8 @@ macOS or Linux:
 
 ```bash
 cd plugins/trimtab/skills
-zip -r ../../../dist/token-lean.skill token-lean
-zip -r ../../../dist/memory-map.skill memory-map
+zip -r ../../../dist/token-lean.zip token-lean
+zip -r ../../../dist/memory-map.zip memory-map
 ```
 
 Windows: don't use `Compress-Archive`; it can write backslashes into entry names, which claude.ai rejects. Use any ZIP tool that writes forward slashes, such as `tar -a -cf` from the `skills` folder, or 7-Zip.
