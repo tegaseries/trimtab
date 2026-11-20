@@ -34,7 +34,6 @@
 
 ---
 
-> **Status: v3.0.0.** In a one-task test on Opus (one run per setup), the skill's rules reached the model and output quality matched a plain session, but no token saving showed up. Earlier, a first small benchmark ([bench/RESULTS.md](bench/RESULTS.md)) found that sending a bulk extraction to the cheapest model kept accuracy at far lower cost, that the memory map cost slightly more than a plain index at 40 notes, and that the lean-reply skill did not improve answers on its test. Savings over a real session are **not measured**. See [docs/LIMITATIONS.md](docs/LIMITATIONS.md).
 
 ## Quick Start
 
