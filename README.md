@@ -44,8 +44,8 @@ Pick the place you use Claude. The rules are the same everywhere. Install one wa
 **Paid plans (Pro, Max, Team, Enterprise): add this repo as a plugin marketplace.** One install covers chat on the web, the desktop app, Cowork, and Claude Code when you sign in with the same account (Claude Code 2.1.273 or later).
 
 1. Open **Customize**, then **Plugins**.
-2. Click **Add**, then **Add marketplace**, then **Add from a repository**, and enter `tegaseries/trimtab`.
-3. Find **trimtab** under **Discover** and click **Install**.
+2. Click **Add**, then **Add marketplace**, then **Add from a repository**. Enter `tegaseries/trimtab`, pick it from the list, and click **Sync**.
+3. Open **Trimtab** under **Discover** and click **Add**.
 4. In chat, type `/` and pick **token-lean**. In Cowork, type `/trimtab:token-lean`.
 
 On Team and Enterprise plans an admin may limit which marketplaces you can add ([Anthropic help center](https://support.claude.com/en/articles/13837440-use-plugins-in-claude)).
