@@ -4,7 +4,7 @@ description: A small linked memory for Claude made of plain markdown files: a ro
 license: MIT
 compatibility: Plain markdown files in one folder. Claude Code reads and writes it directly; claude.ai, Cowork and mobile need a connector (such as a file-sync or drive connector) that can read the same folder. No scripts, no network access.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # memory-map
@@ -13,7 +13,7 @@ Claude forgets between sessions. This skill keeps a small memory as files and gi
 
 ## Layout
 
-Pick one folder and use it everywhere. In Claude Code the default is `~/.claude/memory/`. To let other surfaces read it, put the folder inside a synced folder (Google Drive, OneDrive, Dropbox, iCloud) that they can reach through a connector.
+Pick one folder and use it everywhere. Before the first write, ask the user where to keep it and wait for the answer; propose `~/.claude/memory/` in Claude Code as the default, and never create or fill a folder they have not agreed to. To let other surfaces read it, put the folder inside a synced folder (Google Drive, OneDrive, Dropbox, iCloud) that they can reach through a connector.
 
 ```
 memory/

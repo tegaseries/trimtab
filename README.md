@@ -13,29 +13,29 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2323FF.svg" alt="License: MIT"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-3.0.0-2323FF.svg" alt="Version 3.0.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-3.1.0-2323FF.svg" alt="Version 3.1.0"></a>
   <a href="#claude-code"><img src="https://img.shields.io/badge/Claude%20Code-plugin-2323FF.svg" alt="Claude Code plugin"></a>
   <a href="#claudeai-desktop-app-and-cowork"><img src="https://img.shields.io/badge/claude.ai%20%C2%B7%20desktop%20%C2%B7%20Cowork-plugin-2323FF.svg" alt="claude.ai, desktop and Cowork plugin"></a>
   <a href="#how-it-works"><img src="https://img.shields.io/badge/markdown-only-2323FF.svg" alt="Markdown only"></a>
 </p>
 
 <p align="center">
-  <a href="#quick-start">Quick Start</a> •
-  <a href="#what-you-get">What You Get</a> •
-  <a href="#how-it-works">How It Works</a> •
+  <a href="#quick-start">Quick start</a> •
+  <a href="#what-you-get">What you get</a> •
+  <a href="#how-it-works">How it works</a> •
   <a href="#configuration">Configuration</a> •
-  <a href="#known-limits">Known Limits</a> •
+  <a href="#known-limits">Known limits</a> •
   <a href="#license">License</a>
 </p>
 
 <p align="center">
-  A trim tab is the small flap on a rudder that turns a big ship. trimtab is two skills that work in Claude Code, claude.ai, the Claude desktop app and Cowork: <b>token-lean</b> makes Claude lead with the point that matters, say how sure it is, check its work before calling it done, hand mechanical steps to cheaper models, and write a handoff before a session gets long. <b>memory-map</b> (optional) gives Claude a small linked memory it reads before asking you the same thing twice.
+  A trim tab is the small flap on a rudder that turns a big ship. trimtab is two skills for Claude Code, claude.ai, the Claude desktop app and Cowork. <b>token-lean</b> makes Claude lead with the point that matters, say how sure it is, check its work before calling it done, give mechanical steps to cheaper models, and write a handoff before a session gets long. <b>memory-map</b> is optional: it gives Claude a small linked memory to read before it asks you the same thing twice.
 </p>
 
 ---
 
 
-## Quick Start
+## Quick start
 
 Pick the place you use Claude. The rules are the same everywhere. Install one way only: an install on your account also shows up in Claude Code, and two copies load the rules twice.
 
@@ -82,7 +82,7 @@ Start a new chat or session, load the skill as above, and ask something you woul
 ### Update
 
 - Plugin on claude.ai, desktop or Cowork: **Customize**, then **Plugins**, open the `tegaseries` marketplace and click **Check for updates**, or turn on **Sync automatically**.
-- Plugin in Claude Code: `/plugin marketplace update tegaseries`.
+- Plugin in Claude Code: `/plugin marketplace update tegaseries`. Claude Code does not update third-party marketplaces on its own by default; to change that, open `/plugin`, go to the Marketplaces tab, select `tegaseries` and turn auto-update on.
 - Uploaded skill: delete it under **Customize**, then **Skills**, and upload the new ZIP.
 
 <details>
@@ -108,16 +108,16 @@ To install for one project only, copy it into that project's `.claude/skills/` f
 
 **Other places.** Developers can load the same skill folder through the Claude API's code execution tool (beta). Uploading custom skills from the mobile app is not confirmed; upload on the web or desktop app first. claude.ai accepts only these frontmatter keys: `name`, `description`, `license`, `compatibility`, `metadata`, `allowed-tools`. The skills here use only those.
 
-## What You Get
+## What you get
 
 | Skill | Command | What it does |
 |---|---|---|
-| `token-lean` | `/trimtab:token-lean` (plugin) or `/token-lean` (upload or folder copy) | Core rules at the top of `SKILL.md`: lead with the point, confidence tags (`[Certain]`, `[Likely]`, `[Guessing]`), checks before "done", write less, read less, lean replies. Then the detail: task sizing, a "mechanical test" for handing steps to cheaper models, context hygiene, session handoff. |
-| `memory-map` | `/trimtab:memory-map` (plugin) or `/memory-map` (upload or folder copy) | Optional. A memory made of plain markdown files: root index, then one topic hub, then one note. Rules for looking up, saving and logging work. Starter templates included. |
+| `token-lean` | `/trimtab:token-lean` (plugin) or `/token-lean` (upload or folder copy) | Core rules at the top of `SKILL.md`: lead with the point, tag claims `[Certain]`, `[Likely]` or `[Guessing]`, check before "done", write less, read less, keep replies short. Below them is the detail: task sizing, a "mechanical test" for handing steps to cheaper models, context hygiene and session handoff. |
+| `memory-map` | `/trimtab:memory-map` (plugin) or `/memory-map` (upload or folder copy) | Optional. A memory made of plain markdown files: a root index, then one topic hub, then one note. It has rules for looking things up, saving and logging work, and starter templates. Before its first write it asks you where to keep the folder. |
 
-Both are plain markdown. No scripts, no hooks, no network access, and nothing edits your settings. They behave the same on Windows, macOS and Linux.
+Both are plain markdown files with no scripts, hooks or network access, and neither edits your settings. They behave the same on Windows, macOS and Linux.
 
-## How It Works
+## How it works
 
 A skill is a folder with a `SKILL.md` file. Claude keeps only each skill's one-line description in context until the skill is needed; typing the command loads the full file. token-lean puts its core rules at the very top, so they take effect as soon as it loads and stay for the rest of the session.
 
@@ -141,7 +141,7 @@ These are starting points. Compare your own usage with and without them before y
 - Copied folder: delete `~/.claude/skills/token-lean`.
 - Snippet: delete the block between the `token-lean:begin` and `token-lean:end` markers in your `CLAUDE.md`.
 
-## Known Limits
+## Known limits
 
 The savings are mostly unmeasured, the skills add a small fixed token cost, subagents only pay off on large jobs, the memory has no automation, and everything stored in it is plain text. Details and the numbers behind them are in [docs/LIMITATIONS.md](docs/LIMITATIONS.md).
 

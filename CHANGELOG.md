@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.1.0 - 2026-11-23
+
+- Fixed a conflict between two rules: "never open with agreement; lead with a challenge" versus reply styles that say "lead with the result". Under a concise or brief style the result now comes first, and a challenge follows only if it would change what the user does. The core rules in `SKILL.md` and `examples/CLAUDE.md.snippet` both carry the change.
+- Fixed the routing text: a step that fails the mechanical test's "no taste or judgement" check goes to no worker, whatever its size. Before, the large-step rule skipped that check, which contradicted "judgement work is never given to a weaker model".
+- Made the large-step rule explicit: a step that passes all three tests but reads or moves more than 30K tokens goes to the middle tier (`sonnet`) rather than the cheapest one, which matches "`sonnet` for large ones" in the CLAUDE.md snippet. In a test, the 3.0.0 wording sent such a step to `haiku`.
+- `memory-map` 1.1.0: before the first write it now asks the user where to keep the memory folder (default `~/.claude/memory/`) and waits for the answer, instead of choosing a folder itself.
+- Rebuilt `dist/token-lean.zip` and `dist/memory-map.zip` from the current skills (the token-lean zip was one edit behind 3.0.0).
+
 ## 3.0.0 - 2026-11-19
 
 - Renamed the project to **trimtab**. One plugin, `trimtab`, now holds both skills: `token-lean` (`/trimtab:token-lean`) and `memory-map` (`/trimtab:memory-map`). The marketplace is `tegaseries`.
