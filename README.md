@@ -20,6 +20,7 @@
 </p>
 
 <p align="center">
+  <a href="#whats-new-in-320">What's new</a> •
   <a href="#quick-start">Quick start</a> •
   <a href="#what-you-get">What you get</a> •
   <a href="#how-it-works">How it works</a> •
@@ -34,6 +35,17 @@
 
 ---
 
+
+## What's new in 3.2.0
+
+- **`lean-worker` agent.** A cheap worker (haiku, read-only tools) for mechanical steps. Delegated work now goes there, never to a general-purpose agent that carries every tool. In one test the same step cost about $0.017 on `lean-worker` against about $0.57 on the default agent.
+- **Cheaper reading.** Over 5 files, one Grep or Bash call or parallel Reads, never one Read per turn. A haiku worker stays under 100K tokens, where Haiku pricing steps up.
+- **Plan-aware model rules.** The start model and any planner above it are named by tier (mid, strongest, cheapest), not by model, so the rules fit Free, Pro and Max. If a tier is not on your plan, Claude says so once and uses the next one down.
+- **Docs search capped** at one search or page read, skipped when a dated answer under 30 days old is already on hand.
+- **Shorter advisor rules.** Confidence tags once per group of claims, none on what is plainly in your message or the tool output.
+- **Corrected notes.** `/clear` is no longer called "free", and the Haiku price note is fixed.
+
+Full list: [CHANGELOG](CHANGELOG.md).
 
 ## Quick start
 
