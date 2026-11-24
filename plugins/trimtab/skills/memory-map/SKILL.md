@@ -4,7 +4,7 @@ description: A small linked memory for Claude made of plain markdown files: a ro
 license: MIT
 compatibility: Plain markdown files in one folder. Claude Code reads and writes it directly; claude.ai, Cowork and mobile need a connector (such as a file-sync or drive connector) that can read the same folder. No scripts, no network access.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # memory-map
@@ -67,7 +67,7 @@ One fact per note. Project notes add `Why:` and `How to apply:` lines.
 
 Passwords, API keys, tokens, recovery codes, card or bank numbers, government ID numbers. If the user pastes one, do not copy it into memory; say that you left it out and why.
 
-Memory files are plain text. Anyone who can open the folder can read every note, so do not put the folder in a public repository or a shared drive. Before syncing or sharing the folder, search it for secrets (see `docs/LIMITATIONS.md` in this repository for example commands).
+Memory files are plain text. Anyone who can open the folder can read every note, so do not put the folder in a public repository or a shared drive. Before syncing or sharing the folder, search it for secrets, for example with `grep -rniE "(password|passwd|secret|api[_-]?key|token)[[:space:]]*[:=]|sk-[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}" memory/` (macOS, Linux, Git Bash) or the same pattern in `Select-String` (PowerShell). A pattern search is a rough check: it misses secrets that do not match and flags harmless text.
 
 ## Limits
 

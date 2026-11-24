@@ -48,4 +48,4 @@ The memory is plain text files. To let other devices or chat apps read it, put t
 
 ## What it does not do
 
-It does not run scripts, change your settings, or contact any server. It cannot force Claude to follow it; it only makes the right behaviour the easy one. See [LIMITATIONS.md](LIMITATIONS.md) for the honest list.
+It does not run scripts, change your settings, or contact any server. It cannot force Claude to follow it; it only makes the right behaviour the easy one.

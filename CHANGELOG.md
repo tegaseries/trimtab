@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.2.2 - 2026-11-24
+
+- Removed `docs/LIMITATIONS.md` and every link to it. `memory-map` 1.1.1 now carries its secrets-search command inline instead of pointing to that page.
+- Rebuilt `dist/token-lean.zip` and `dist/memory-map.zip`.
+
 ## 3.2.1 - 2026-11-24
 
 - New `SETUP.md`: a first-time setup guide with one copy-paste prompt for Claude Code (install the plugin, add the core rules to `CLAUDE.md`, set `effortLevel` to `low`, copy the `lean-worker` agent, check the start model), and a table of why each step is a setting or file rather than an always-loaded rule.
@@ -14,7 +19,6 @@
 - Docs-search rule capped at one search or page read, skipped when a dated answer under 30 days old is already in the session or memory.
 - Advisor rules shortened: tags once per group of claims with the same confidence, none on what is plainly in the user's message or tool output; the pre-send check is removed.
 - Price note corrected: Haiku 5.5 is $0.10/$0.50 per million tokens only under 100K prompt tokens; "the cheapest tier is the one large saving" is replaced with the measured figure (about 25 percent per step).
-- `docs/LIMITATIONS.md` now reports the 2026-11-24 benchmark honestly: always-on rules were about 11 to 12 percent costlier per small task with equal accuracy; the batching and `lean-worker` rules were tested once end to end only; rework prevention is not measured.
 - Rebuilt `dist/token-lean.zip`.
 
 ## 3.1.0 - 2026-11-23

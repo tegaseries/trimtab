@@ -31,7 +31,7 @@ On Windows, `~` is your user folder (for example `C:\Users\<you>`).
 
 ## About default effort
 
-- In a test (Sonnet 5.5, 30 headless runs, five small tasks), low effort matched high effort on accuracy (12 of 12 checked tasks passed in both) and cost about 3 percent less per run, with about 19 percent fewer output tokens. The saving is small because the fixed setup of every run dominates a small task. Directional only; see [docs/LIMITATIONS.md](docs/LIMITATIONS.md).
+- In a test (Sonnet 5.5, 30 headless runs, five small tasks), low effort matched high effort on accuracy (12 of 12 checked tasks passed in both) and cost about 3 percent less per run, with about 19 percent fewer output tokens. The saving is small because the fixed setup of every run dominates a small task. Directional only.
 - Not tested: thinking-heavy tasks, where low effort may do worse, and comparison with the model's own default (`medium` for Haiku, Sonnet and Opus 5.5 according to the Claude Code docs).
 - Raise it when the work needs judgement: `/effort high` for planning, debugging or design, and back to `low` afterwards. `/effort` overrides the setting for the session, and the `CLAUDE_CODE_EFFORT_LEVEL` environment variable overrides both. The settings key accepts `low`, `medium`, `high` and `xhigh`.
 - Remove the `"effortLevel"` line from `~/.claude/settings.json` to go back to the model's default.

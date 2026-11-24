@@ -20,7 +20,7 @@ Small, cheap, controlled runs. They show direction, not proof. Read the confound
 | Tool calls | 4.7 | 6.1 |
 | Output tokens | 1,306 | 1,684 |
 
-Flat was cheaper on 9 of 10 questions. At 40 notes the map's extra hop (root, then hub, then note) and the cost of reading the skill outweigh what its index saves. The "95 percent" figure in the limitations page holds only against reading every note, which nobody does.
+Flat was cheaper on 9 of 10 questions. At 40 notes the map's extra hop (root, then hub, then note) and the cost of reading the skill outweigh what its index saves.
 
 Not tested: more notes (the crossover point), stale hubs, or the skill being read once per session instead of once per question.
 

@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2323FF.svg" alt="License: MIT"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-3.2.1-2323FF.svg" alt="Version 3.2.1"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-3.2.2-2323FF.svg" alt="Version 3.2.2"></a>
   <a href="#claude-code"><img src="https://img.shields.io/badge/Claude%20Code-plugin-2323FF.svg" alt="Claude Code plugin"></a>
   <a href="#claudeai-desktop-app-and-cowork"><img src="https://img.shields.io/badge/claude.ai%20%C2%B7%20desktop%20%C2%B7%20Cowork-plugin-2323FF.svg" alt="claude.ai, desktop and Cowork plugin"></a>
   <a href="#how-it-works"><img src="https://img.shields.io/badge/markdown-only-2323FF.svg" alt="Markdown only"></a>
@@ -25,7 +25,6 @@
   <a href="#what-you-get">What you get</a> •
   <a href="#how-it-works">How it works</a> •
   <a href="#configuration">Configuration</a> •
-  <a href="#known-limits">Known limits</a> •
   <a href="#license">License</a>
 </p>
 
@@ -158,10 +157,6 @@ These are starting points. Compare your own usage with and without them before y
 - Uploaded skill: **Customize**, then **Skills**, and turn it off or delete it.
 - Copied folder: delete `~/.claude/skills/token-lean`.
 - Snippet: delete the block between the `token-lean:begin` and `token-lean:end` markers in your `CLAUDE.md`.
-
-## Known limits
-
-The savings are mostly unmeasured, the skills add a small fixed token cost, subagents only pay off on large jobs, the memory has no automation, and everything stored in it is plain text. Details and the numbers behind them are in [docs/LIMITATIONS.md](docs/LIMITATIONS.md).
 
 ## Contributing
 
