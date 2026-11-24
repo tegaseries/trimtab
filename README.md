@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2323FF.svg" alt="License: MIT"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-3.1.0-2323FF.svg" alt="Version 3.1.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-3.2.0-2323FF.svg" alt="Version 3.2.0"></a>
   <a href="#claude-code"><img src="https://img.shields.io/badge/Claude%20Code-plugin-2323FF.svg" alt="Claude Code plugin"></a>
   <a href="#claudeai-desktop-app-and-cowork"><img src="https://img.shields.io/badge/claude.ai%20%C2%B7%20desktop%20%C2%B7%20Cowork-plugin-2323FF.svg" alt="claude.ai, desktop and Cowork plugin"></a>
   <a href="#how-it-works"><img src="https://img.shields.io/badge/markdown-only-2323FF.svg" alt="Markdown only"></a>
@@ -122,7 +122,7 @@ Both are plain markdown files with no scripts, hooks or network access, and neit
 A skill is a folder with a `SKILL.md` file. Claude keeps only each skill's one-line description in context until the skill is needed; typing the command loads the full file. token-lean puts its core rules at the very top, so they take effect as soon as it loads and stay for the rest of the session.
 
 - After `/clear` or a compaction the rules can drop out: type the command again.
-- For rules in **every** session without typing anything, paste the block from [examples/CLAUDE.md.snippet](examples/CLAUDE.md.snippet) into your `CLAUDE.md`. It costs roughly 900 tokens per session.
+- For rules in **every** session without typing anything, paste the block from [examples/CLAUDE.md.snippet](examples/CLAUDE.md.snippet) into your `CLAUDE.md`. It costs roughly 1,000 tokens per session.
 - For memory, copy the files from `plugins/trimtab/skills/memory-map/templates/` into a folder (default `~/.claude/memory/`) and ask Claude to use `memory-map`.
 
 New to skills? [docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md) is a plain-language walk-through.

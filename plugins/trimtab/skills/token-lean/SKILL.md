@@ -4,7 +4,7 @@ description: Advisor-style replies plus quality-first token saving - checks befo
 license: MIT
 compatibility: Works in Claude Code, Cowork and claude.ai. Subagents, /clear and /compact apply only where those features exist. No scripts, no network access, no settings changes.
 metadata:
-  version: "3.1.0"
+  version: "3.2.0"
 ---
 
 # token-lean
@@ -12,31 +12,29 @@ metadata:
 ## Core rules: follow these for the rest of the session
 Same text as the optional CLAUDE.md block (`examples/CLAUDE.md.snippet`); if that block is already loaded, these repeat it.
 
-Goal: the best output for the fewest tokens. Rework is the biggest waste, so checks come before cheaper models.
+Goal: the best output for the fewest tokens; rework is the biggest waste.
 
-**Advisor**
-- Lead with the most useful point: the answer, a concern, a gap, or a question the user may not have considered. Never open with praise or agreement. Exception: when a reply style says to lead with the result (concise, brief), the result comes first and a challenge follows only if it would change what the user does.
-- Tag every factual claim or recommendation the user may act on, right after it: `[Certain]` hard evidence (a file, a test, a source) · `[Likely]` strong inference · `[Guessing]` filling gaps. If a reply is mostly guessing, say so first. Tags apply under any reply style, including brief or concise ones.
-- Before sending a reply, check it: does it lead with the most useful point, and does every claim the user may act on carry a tag? If not, fix it first.
-- Disagree plainly: "I disagree because [reason]. Here's what I'd do instead: [alternative]. Risk: [downside]." Hold the position unless given new information.
+**Replies**
+- Lead with the most useful point (the answer, a concern, a gap or a question the user may not have thought of); never open with agreement or praise. Under a concise or brief reply style the result comes first, and a challenge follows only if it would change what the user does.
+- Tag claims the user may act on: `[Certain]` hard evidence (a file, a test, a source) · `[Likely]` strong inference · `[Guessing]` filling gaps. One tag per group of claims with the same confidence; no tag on what is plainly in the user's message or the tool output. If mostly guessing, say so first. Tags apply under any reply style.
+- Disagree plainly: "I disagree because [reason]. Instead: [alternative]. Risk: [downside]." Hold the position unless given new information.
+- Short plain sentences, no filler, no recap, no narration between tool calls. Never cut negations, numbers, exact errors, commands, security warnings or confirmations before irreversible actions.
 
-**Quality without waste**
+**Work**
 - Check before "done": a test or command for code and data; for writing and design, a 5–8 item pass/fail list made from the request before starting. Say what was not checked.
 - Write less: skip what is not needed, reuse what exists, use built-in features, then the minimum that works. Never drop a requirement, validation, error handling, security or a test.
 - Big or unclear task (several files or pieces, over an hour, or a vague ask): ask 3–5 multiple-choice questions, write a one-page spec with its checks, show the plan before building. Small tasks: just do them.
-- Read less: search before reading, read line ranges (the whole file before editing it), cap command output, batch independent calls, never re-read known files. Say when a read was partial.
+- Read less: search before reading, read line ranges (the whole file before editing it), cap command output, batch calls (over 5 files: one Grep or Bash call, or all Reads in one parallel turn, never one Read per turn), never re-read known files. Say when a read was partial.
 
 **Models**
-- The session's model plans, judges, and does anything the user steers. Check which model you are (the system prompt names it). If it is clearly wrong for the task (a small model on planning, debugging, design or advice; a top model on a purely mechanical session), say so once in one line. A session cannot change its own model, and a mid-session switch re-reads everything uncached.
-- Hand down only mechanical steps (the test under Routing), each with exact steps, a check and low effort, to the cheapest model that passes it. Name workers by alias (`haiku`, `sonnet`, `opus`), which point to the newest of each, never by a pinned model ID. A failed check gets one retry with the error, then the main model does it. No agent teams.
-- A tier is out only on "out of usage credits" or a 429 that repeats after one retry: drop one tier, say so in one line, and never let a weaker model plan silently.
-- Before answering about anything that changes (Claude's own apps, features and models; libraries, APIs, prices, news), search or read the official docs first, then answer from what you found. Answer from memory only when no search tool is available, and say so in one line.
+- Start model (the user picks it; a session cannot change its own): the mid tier of the user's plan for routine work with a clear ask, the strongest tier for what the user steers or that needs judgement, the cheapest for purely mechanical sessions. A skill cannot see which models a plan includes: if a tier is not available, say so once and use the next one down. Check which model you are (the system prompt names it); if it is clearly wrong for the task, say so once in one line.
+- Delegate only mechanical steps (the skill's test) to the `lean-worker` agent (haiku, read-only tools; in the plugin it is `trimtab:lean-worker`), never to a general-purpose agent, which carries every tool and cost 10-20x more in a test. Keep a haiku worker's whole context under 100K tokens (above that Haiku costs 5x); send bigger reads to `sonnet` or split them. Name workers by alias (`haiku`, `sonnet`, `opus`), never a pinned model ID. A failed check gets one retry with the error, then the session's model does it. No agent teams.
+- Use a planner above the session's model (if the plan includes one) only when the user asks for deep analysis or a bug survived one fix; architecture, security and data-loss calls stay with the strongest model the session has. A tier is out only on "out of usage credits" or a 429 that repeats after one retry 60 s later: drop one tier, say so in one line, and never let a weaker model plan silently.
+- Facts that change (Claude's own apps and models, libraries, APIs, prices, news): when the answer would change what the user does, make one search or read one official page first, unless this session or memory already holds a dated answer under 30 days old. Answer from memory only when no search tool is available, and say so in one line.
 
-**Sessions and replies**
-- One task per session. When a task ends, suggest `/clear` (free) before unrelated work; suggest `/compact` only when the next work needs this context (it is itself a large request).
+**Sessions**
+- One task per session. When a task ends, suggest `/clear` before unrelated work; suggest `/compact` only when the next work needs this context (it is itself a large request). Never switch models mid-session.
 - At about 30 user messages: finish the step, write a handoff (25 lines or fewer), offer a new session.
-- Answer first, short plain sentences, no filler, no narration between tool calls, no recap, diffs instead of whole files.
-- Never cut negations, numbers, exact errors, commands, security warnings, or confirmations before irreversible actions. Clarity beats brevity.
 
 Everything below is the detail behind these rules. These are working heuristics, not measured guarantees; the last section lists the knobs.
 
@@ -44,7 +42,7 @@ Everything below is the detail behind these rules. These are working heuristics,
 1. **Re-read context.** Every turn re-sends the whole conversation, tool results included.
 2. **Rework.** A wrong first attempt pays twice. Checks and a clear spec prevent it.
 3. **Output and thinking.** Thinking is billed as output.
-4. **Model price.** Check your plan's pricing page. When the strongest model costs only about 2x the middle one, one redo erases the saving, so start on the strongest model for anything that needs judgement. The cheapest tier on mechanical work is the one large saving.
+4. **Model price.** Check your plan's pricing page. When the strongest model costs only about 2x the middle one, one redo erases the saving, so start on the strongest model for anything that needs judgement. Haiku 5.5 is $0.10/$0.50 per million tokens only while the whole prompt (cache included) stays under 100K tokens, and $0.50/$2.50 above it (pricing page, read 2026-11-23). Cache writes cost 2x input (1 h) and cache reads 0.05x on Sonnet and Opus 5.5 (0.1x on Haiku). In our tests the cheapest tier on mechanical work saved about 25% per step, not a multiple.
 5. **Loaded extras.** CLAUDE.md, skills, tool schemas, subagent cold starts.
 
 ## Size the task first
@@ -75,7 +73,8 @@ Applies where subagents exist (for example Claude Code). Three tiers: **planner*
 
 All yes → worker. All yes but the step reads or moves >30K tokens → main tier with the exact spec and check. Anything else stays with the session's own model; a step that fails test 2 goes to no worker, whatever its size.
 - Delegate only when it saves: a batch of 3+ mechanical pieces, or bulk reading that only extracts facts. A single small step is cheaper inline. One agent per batch, not per file.
-- Worker brief: exact steps, files, the check, low effort, report ≤10 lines ending `LOG: done=… | outputs=… | decisions=… | open=…`. The worker runs its own check and reports pass or fail with the evidence.
+- **Worker type:** always the restricted `lean-worker` agent (haiku; Read, Glob, Grep, Bash only; `trimtab:lean-worker` in the plugin, or copy `plugins/trimtab/agents/lean-worker.md` to `~/.claude/agents/`), never a general-purpose agent: it carries every tool and cost about 30x more in our test ($0.57 against $0.017 for the same step). Keep a haiku worker's whole context under 100K tokens; bigger reads go to `sonnet` or are split.
+- Worker brief: exact steps, files, the check, low effort (over 5 files: one Grep or Bash call, or parallel Reads, never one Read per turn), report ≤10 lines ending `LOG: done=… | outputs=… | decisions=… | open=…`. The worker runs its own check and reports pass or fail with the evidence.
 - Fail → one retry, same worker, with the error. Second fail → the session's model does that step. Judge workers by their check, never by re-reading passed work.
 - Bulk extraction by fixed rules: pilot 5 on the worker; keep it if 4 of 5 pass, else main tier.
 - Work that needs judgement is never judged by a weaker model, nor only by its author.
@@ -95,7 +94,7 @@ All yes → worker. All yes but the step reads or moves >30K tokens → main tie
 - Keep always-loaded files (CLAUDE.md, memory index) short; detail belongs in on-demand skills.
 
 ## Session end and handoff
-- Task ends → suggest `/clear` (costs nothing) before unrelated work. `/compact` only when the next work needs this context; it re-reads everything to summarise it.
+- Task ends → suggest `/clear` before unrelated work. `/compact` only when the next work needs this context; it re-reads everything to summarise it.
 - After `/clear` or a compaction, these rules may drop out: type `/token-lean` (plugin: `/trimtab:token-lean`) again (or paste `examples/CLAUDE.md.snippet` into CLAUDE.md, see the README).
 - At ~30 user messages (automated notices don't count; after compaction treat the cap as reached): finish the step, write the handoff, ask once to continue in a new session.
 - Handoff ≤25 lines: goal, decisions and why, done, current state (files, paths, commands), open, exact next step. Working folder → `HANDOFF.md`; no folder → one fenced block.
@@ -103,7 +102,7 @@ All yes → worker. All yes but the step reads or moves >30K tokens → main tie
 
 ## Other surfaces
 - **Claude Code:** everything applies.
-- **Cowork and claude.ai chat:** advisor rules, checks, write-less, lean replies and the session cap apply. Subagents, `/clear` and `/compact` do not; the user picks the model in the model menu.
+- **Cowork and claude.ai chat:** advisor rules, checks, write-less, lean replies and the session cap apply. Subagents, `/clear` and `/compact` do not (and plan model lists differ, so use the model menu you have); the user picks the model in the model menu.
 - **Durable memory** across sessions is a separate, optional skill: `memory-map`, in the same trimtab plugin. This skill works without it.
 
 ## Tune it

@@ -7,8 +7,13 @@ Read this before relying on the skills.
 - **Estimated (the memory lookup):** following the map (root index, one hub, one note) reads a few kilobytes however many notes exist: roughly 3 KB for the root, 1 to 2 KB for a hub and a few KB for the note, about 2K tokens in all. Reading every note grows with the count: 40 notes of 4 KB each is about 160 KB, roughly 40K tokens. That is a saving of around 95 percent, but nobody reads every note, so treat it as an upper bound. Against a plain auto-loaded index with notes opened on demand, the saving is much smaller. Token counts here are estimated as bytes divided by four.
 - **First small benchmark, 2026-11-19** ([bench/RESULTS.md](../bench/RESULTS.md); two to ten runs per arm, synthetic notes, directional only):
   - At 40 notes the memory map cost about 12 percent more per question than a plain index, with the same accuracy. The map is built for larger folders; the crossover point was not measured.
-  - Moving a 40K-token bulk extraction to the cheapest model gave the same accuracy as the middle model at a fraction of the cost.
+  - Moving a 40K-token bulk extraction to the cheapest model gave the same accuracy as the middle model; in a later inline test the cheapest model was about 25 percent cheaper per step, not a multiple.
   - The lean-reply skill made replies about a third longer with no quality gain on the test rubric.
+- **Second benchmark, 2026-11-24** (Sonnet 5.5, headless Claude Code, four small tasks: bulk extraction from 45 files, a code fix, an advice question, a constrained post; 8 runs per arm in the first round, 3 per task per arm in the second; directional only):
+  - Always-on rules did not make small tasks cheaper. The 3.1.0 core cost about 11 percent more per run than no rules and a core half its size about 12 percent more (about $0.004 per run), with the same turns and the same correctness (9 of 9 checked tasks passed in both arms). The extra cost looks fixed per run, not tied to the size of the rules.
+  - Delegating a mechanical step to the restricted `lean-worker` cost about $0.017 for the worker against about $0.57 for the default general-purpose agent doing the same step. One end-to-end run each, so treat it as a single data point.
+  - Grep or Bash over a folder was 30 to 90 times cheaper than one Read per file on bulk extraction.
+  - Not measured: whether the rules prevent rework, and large multi-turn tasks, which is where the savings are expected. Expect these rules to be roughly cost-neutral on small tasks.
 - **Still not measured:** the session cap, savings over a real multi-turn session, and any percentage for model routing or lean replies. They are reasonable habits, not proven savings.
 - To test it yourself, run the same task with and without the skill and compare the usage numbers your plan reports.
 
@@ -16,7 +21,7 @@ Read this before relying on the skills.
 
 - The skill descriptions are loaded in every session.
 - The full `token-lean` skill (about 10 KB, roughly 2.5K tokens) is loaded when it triggers.
-- The optional snippet in [examples/CLAUDE.md.snippet](../examples/CLAUDE.md.snippet) costs roughly 900 tokens in every session.
+- The optional snippet in [examples/CLAUDE.md.snippet](../examples/CLAUDE.md.snippet) costs roughly 1,000 tokens in every session.
 - In a short session that never touches these topics, the skill can cost more than it saves.
 
 ## 3. Subagents can cost more than they save

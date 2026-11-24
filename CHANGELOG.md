@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.2.0 - 2026-11-24
+
+- New agent `lean-worker` (`trimtab:lean-worker` in the plugin; file at `plugins/trimtab/agents/lean-worker.md`): haiku with Read, Glob, Grep and Bash only. The rules now send delegated mechanical steps there and never to a general-purpose agent, which carries every tool. In one end-to-end test the worker cost about $0.017 against about $0.57 for the default agent on the same step.
+- Cost rules: batch reads (over 5 files, one Grep or Bash call or parallel Reads, never one Read per turn); keep a haiku worker under 100K tokens because Haiku 5.5 costs 5x more above that; `/clear` is no longer called "free" (the next prompt rebuilds the cache).
+- Plan-aware model rules for Free, Pro and Max: the start model and any planner above it are named by tier (mid, strongest, cheapest), not by model. If a tier is not on the plan, Claude says so once and uses the next one down.
+- Docs-search rule capped at one search or page read, skipped when a dated answer under 30 days old is already in the session or memory.
+- Advisor rules shortened: tags once per group of claims with the same confidence, none on what is plainly in the user's message or tool output; the pre-send check is removed.
+- Price note corrected: Haiku 5.5 is $0.10/$0.50 per million tokens only under 100K prompt tokens; "the cheapest tier is the one large saving" is replaced with the measured figure (about 25 percent per step).
+- `docs/LIMITATIONS.md` now reports the 2026-11-24 benchmark honestly: always-on rules were about 11 to 12 percent costlier per small task with equal accuracy; the batching and `lean-worker` rules were tested once end to end only; rework prevention is not measured.
+- Rebuilt `dist/token-lean.zip`.
+
 ## 3.1.0 - 2026-11-23
 
 - Fixed a conflict between two rules: "never open with agreement; lead with a challenge" versus reply styles that say "lead with the result". Under a concise or brief style the result now comes first, and a challenge follows only if it would change what the user does. The core rules in `SKILL.md` and `examples/CLAUDE.md.snippet` both carry the change.
