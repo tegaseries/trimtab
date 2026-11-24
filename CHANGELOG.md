@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.1 - 2026-11-24
+
+- New `SETUP.md`: a first-time setup guide with one copy-paste prompt for Claude Code (install the plugin, add the core rules to `CLAUDE.md`, set `effortLevel` to `low`, copy the `lean-worker` agent, check the start model), and a table of why each step is a setting or file rather than an always-loaded rule.
+- Default effort is documented as a setting, not a rule: in a 30-run test, low effort matched high effort on accuracy and cost about 3 percent less per run. Thinking-heavy tasks and a comparison with the model default were not tested.
+- README links the guide; `SKILL.md` and `plugin.json` carry 3.2.1; rebuilt `dist/token-lean.zip`.
+
 ## 3.2.0 - 2026-11-24
 
 - New agent `lean-worker` (`trimtab:lean-worker` in the plugin; file at `plugins/trimtab/agents/lean-worker.md`): haiku with Read, Glob, Grep and Bash only. The rules now send delegated mechanical steps there and never to a general-purpose agent, which carries every tool. In one end-to-end test the worker cost about $0.017 against about $0.57 for the default agent on the same step.

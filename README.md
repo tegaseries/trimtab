@@ -13,14 +13,14 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2323FF.svg" alt="License: MIT"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-3.2.0-2323FF.svg" alt="Version 3.2.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-3.2.1-2323FF.svg" alt="Version 3.2.1"></a>
   <a href="#claude-code"><img src="https://img.shields.io/badge/Claude%20Code-plugin-2323FF.svg" alt="Claude Code plugin"></a>
   <a href="#claudeai-desktop-app-and-cowork"><img src="https://img.shields.io/badge/claude.ai%20%C2%B7%20desktop%20%C2%B7%20Cowork-plugin-2323FF.svg" alt="claude.ai, desktop and Cowork plugin"></a>
   <a href="#how-it-works"><img src="https://img.shields.io/badge/markdown-only-2323FF.svg" alt="Markdown only"></a>
 </p>
 
 <p align="center">
-  <a href="#whats-new-in-320">What's new</a> •
+  <a href="#whats-new">What's new</a> •
   <a href="#quick-start">Quick start</a> •
   <a href="#what-you-get">What you get</a> •
   <a href="#how-it-works">How it works</a> •
@@ -36,7 +36,11 @@
 ---
 
 
-## What's new in 3.2.0
+## What's new
+
+**3.2.1:** a [first-time setup guide](SETUP.md) with one prompt to paste into Claude Code. It installs the plugin, adds the core rules, sets a low default effort and copies the worker agent, so none of that has to be repeated in the rules.
+
+**3.2.0:**
 
 - **`lean-worker` agent.** A cheap worker (haiku, read-only tools) for mechanical steps. Delegated work now goes there, never to a general-purpose agent that carries every tool. In one test the same step cost about $0.017 on `lean-worker` against about $0.57 on the default agent.
 - **Cheaper reading.** Over 5 files, one Grep or Bash call or parallel Reads, never one Read per turn. A haiku worker stays under 100K tokens, where Haiku pricing steps up.
@@ -48,6 +52,8 @@
 Full list: [CHANGELOG](CHANGELOG.md).
 
 ## Quick start
+
+**Claude Code, fastest route:** paste the one-prompt setup from [SETUP.md](SETUP.md). It does the install, the always-on rules, the default effort and the worker agent in one go. The manual steps are below.
 
 Pick the place you use Claude. The rules are the same everywhere. Install one way only: an install on your account also shows up in Claude Code, and two copies load the rules twice.
 

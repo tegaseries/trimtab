@@ -1,6 +1,6 @@
 {
   "name": "trimtab",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Small rules that steer Claude to better work for fewer tokens. Skills: token-lean (advisor-style replies, checks before done, write-less, strongest model plans while cheap workers do mechanical steps) and memory-map (optional linked memory). Markdown only: no scripts, no hooks, no settings changes.",
   "author": {
     "name": "tegaseries",
