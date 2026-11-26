@@ -41,7 +41,7 @@
 
 **3.2.0:**
 
-- **`lean-worker` agent.** A cheap worker (haiku, read-only tools) for mechanical steps. Delegated work now goes there, never to a general-purpose agent that carries every tool. In one test the same step cost about $0.017 on `lean-worker` against about $0.57 on the default agent.
+- **`lean-worker` agent.** A cheap haiku worker for mechanical steps, with four tools: Read, Glob, Grep and Bash. It has no Edit or Write tool, but it can still change files through Bash, so give it exact steps and a check. Delegated work now goes there instead of a general-purpose agent that carries every tool. In one test the same step cost about $0.017 on `lean-worker` against about $0.57 on the default agent.
 - **Cheaper reading.** Over 5 files, one Grep or Bash call or parallel Reads, never one Read per turn. A haiku worker stays under 100K tokens, where Haiku pricing steps up.
 - **Plan-aware model rules.** The start model and any planner above it are named by tier (mid, strongest, cheapest), not by model, so the rules fit Free, Pro and Max. If a tier is not on your plan, Claude says so once and uses the next one down.
 - **Docs search capped** at one search or page read, skipped when a dated answer under 30 days old is already on hand.

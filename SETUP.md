@@ -26,7 +26,7 @@ On Windows, `~` is your user folder (for example `C:\Users\<you>`).
 | Plugin | Installs the `token-lean` and `memory-map` skills and the `lean-worker` agent | The skill text loads only when needed |
 | Always-on rules | Adds about 1,000 tokens of core rules to every session | This is the one part that must stay in `CLAUDE.md` |
 | Default effort `low` | Starts every session at low effort | A setting costs no tokens; a rule would |
-| Worker agent | A haiku worker with read-only tools for mechanical steps | An agent file is only read when it is used |
+| Worker agent | A haiku worker for mechanical steps (Read, Glob, Grep and Bash; no Edit or Write tool) | An agent file is only read when it is used |
 | Start model | You pick the model for the session | A session cannot change its own model |
 
 ## About default effort
