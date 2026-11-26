@@ -4,7 +4,7 @@ description: Advisor-style replies plus quality-first token saving - checks befo
 license: MIT
 compatibility: Works in Claude Code, Cowork and claude.ai. Subagents, /clear and /compact apply only where those features exist. No scripts, no network access, no settings changes.
 metadata:
-  version: "3.2.2"
+  version: "3.2.3"
 ---
 
 # token-lean

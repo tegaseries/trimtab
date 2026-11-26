@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.2.3 - 2026-11-26
+
+- Corrected the `lean-worker` description in `README.md`, `SETUP.md`, `examples/CLAUDE.md.snippet` and the token-lean `SKILL.md`. They said it had read-only tools. It has Read, Glob, Grep and Bash, and Bash can change files; it has no Edit or Write tool.
+- `SKILL.md` and `plugin.json` carry 3.2.3; rebuilt `dist/token-lean.zip`.
+
 ## 3.2.2 - 2026-11-24
 
 - Removed `docs/LIMITATIONS.md` and every link to it. `memory-map` 1.1.1 now carries its secrets-search command inline instead of pointing to that page.
